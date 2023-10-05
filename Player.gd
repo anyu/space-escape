@@ -11,13 +11,14 @@ onready var sprite = $Sprite
 var y_velo = 0
 var facing_right = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var move_dir = 0
 	if Input.is_action_pressed("move_right"):
 		move_dir += 1
 	if Input.is_action_pressed("move_left"):	
 		move_dir -= 1
-	move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0,-1))
+	var _m = move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0,-1))
+	
 		
 	var grounded = is_on_floor()
 	y_velo += GRAVITY
@@ -35,11 +36,11 @@ func _physics_process(delta):
 	
 	if grounded:
 		if move_dir == 0:
-			play_animation("idle")
+			play_animation("Idle")
 		else:
-			play_animation("walk")
+			play_animation("Walk")
 	else:
-		play_animation("jump")
+		play_animation("Jump")
 
 func flip():
 	facing_right = !facing_right
