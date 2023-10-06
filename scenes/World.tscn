@@ -1,20 +1,95 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://images/springs.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Spring.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 14.6719 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "active"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 66, 232 )
+position = Vector2( 361, 1129 )
 
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-position = Vector2( -58, -232 )
-offset = Vector2( 500, 350 )
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2( 0, 1250 )
 current = true
-limit_bottom = -10000000
+limit_left = 0
+limit_top = -100000
+limit_right = 720
+limit_bottom = 0
+limit_smoothed = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 0, 262151, 0, 0, 262152, 0, 0, 262159, 0, 0, 327680, 1, 0, 327681, 1, 0, 327693, 0, 0, 327694, 0, 0, 327695, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 0, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 1, 0, 589824, -1073741823, 0, 589825, -1073741823, 0, 589826, -1073741823, 0, 589827, -1073741823, 0, 589828, -1073741823, 0, 589829, -1073741823, 0, 589830, -1073741823, 0, 589831, -1073741823, 0, 589832, -1073741823, 0, 589833, -1073741823, 0, 589834, -1073741823, 0, 589835, -1073741823, 0, 589836, -1073741823, 0, 589837, -1073741823, 0, 589838, -1073741823, 0, 589839, -1073741823, 0 )
+tile_data = PoolIntArray( -655382, 0, 0, 0, 1, 0, 10, 0, 0, 65536, 1, 0, 65544, 0, 0, 65545, 0, 0, 65546, 1, 0, 131072, 1, 0, 131082, 1, 0, 196608, 1, 0, 196618, 1, 0, 262144, 1, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262154, 1, 0, 327680, 1, 0, 327690, 1, 0, 393216, 1, 0, 393226, 1, 0, 458752, 1, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458762, 1, 0, 524288, 1, 0, 524298, 1, 0, 589824, 1, 0, 589832, 0, 0, 589833, 0, 0, 589834, 1, 0, 655360, 1, 0, 655370, 1, 0, 720896, 1, 0, 720906, 1, 0, 786432, 1, 0, 786436, 0, 0, 786437, 0, 0, 786442, 1, 0, 851968, 1, 0, 851976, 0, 0, 851977, 0, 0, 851978, 1, 0, 917504, 1, 0, 917514, 1, 0, 983040, 1, 0, 983041, 0, 0, 983042, 0, 0, 983050, 1, 0, 1048576, 1, 0, 1048586, 1, 0, 1114112, 1, 0, 1114122, 1, 0, 1179648, 1, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 1, 0, 1245184, 1, 0, 1245185, 1, 0, 1245186, 1, 0, 1245187, 1, 0, 1245188, 1, 0, 1245189, 1, 0, 1245190, 1, 0, 1245191, 1, 0, 1245192, 1, 0, 1245193, 1, 0, 1245194, 1, 0 )
+
+[node name="Spring" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Spring"]
+position = Vector2( 163, 940 )
+scale = Vector2( 0.822269, 0.818876 )
+texture = ExtResource( 3 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]
+position = Vector2( 163, 945 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring"]
+root_node = NodePath("../CollisionShape2D")
+anims/RESET = SubResource( 2 )
+anims/active = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[connection signal="body_entered" from="Spring" to="Player" method="_on_Spring_body_entered"]

@@ -13,6 +13,12 @@ config_version=4
 config/name="untitled-platformer-game"
 run/main_scene="res://scenes/World.tscn"
 
+[display]
+
+window/size/width=720
+window/size/height=1280
+window/handheld/orientation="portrait"
+
 [global]
 
 environment=false
