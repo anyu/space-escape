@@ -106,12 +106,10 @@ tracks/0/keys = {
 position = Vector2( 361, 1129 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2( 0, 1250 )
 current = true
 limit_left = 0
-limit_top = -100000
 limit_right = 720
-limit_bottom = 0
+limit_bottom = 1280
 limit_smoothed = true
 
 [node name="TileMap" type="TileMap" parent="."]
