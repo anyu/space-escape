@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 const MOVE_SPEED = 500
-const JUMP_FORCE = 1200
+const JUMP_FORCE = 1500
 const GRAVITY = 50
-const MAX_FALL_SPEED = 1000
-const SPRING_FORCE = 1500
+const MAX_FALL_SPEED = 1500
+const SPRING_FORCE = 2000
 
 onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
