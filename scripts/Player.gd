@@ -11,7 +11,7 @@ onready var sprite = $Sprite
 
 var y_velo = 0
 var facing_right = false
-var spring = -400
+
 func _physics_process(_delta):
 	var move_dir = 0
 	if Input.is_action_pressed("move_right"):
