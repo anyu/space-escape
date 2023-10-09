@@ -6,6 +6,7 @@ const GRAVITY = 50
 const MAX_FALL_SPEED = 1500
 const SPRING_FORCE = 2000
 
+onready var screen_size = get_viewport_rect().size
 onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
 
@@ -13,6 +14,7 @@ var y_velo = 0
 var facing_right = false
 
 func _physics_process(_delta):
+	screen_wrap()
 	var move_dir = 0
 	if Input.is_action_pressed("move_right"):
 		move_dir += 1
@@ -43,6 +45,12 @@ func _physics_process(_delta):
 	else:
 		play_animation("jump")
 
+func screen_wrap():
+	if position.x > screen_size.x:
+		position.x = 0;
+	if position.x < 0:
+		position.x = screen_size.x
+	
 func flip():
 	facing_right = !facing_right
 	sprite.flip_h = !sprite.flip_h
@@ -51,7 +59,6 @@ func play_animation(animation_name):
 	if animation_player.is_playing() and animation_player.current_animation == animation_name:
 		return
 	animation_player.play(animation_name)
-
 
 func _on_Spring_body_entered(body):
 	y_velo = -SPRING_FORCE
