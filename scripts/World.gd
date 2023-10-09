@@ -20,8 +20,9 @@ func _on_MeteoroidTimer_timeout():
 	var meteoroid = meteoroid_scene.instance()
 
 	var random_x = int(get_viewport_rect().size.x)
-
-	var meteoroid_spawn_location = Vector2(random_x, -700)
+	var random_y = -int(get_viewport_rect().size.y)
+	
+	var meteoroid_spawn_location = Vector2(random_x, random_y)
 	meteoroid.position = meteoroid_spawn_location
 	
 	# Set the meteoroid's direction to move downward.
