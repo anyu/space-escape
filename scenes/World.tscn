@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/springs.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Spring.gd" type="Script" id=4]
+[ext_resource path="res://images/ground.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Asteroid.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41.5, 23.5 )
@@ -35,7 +37,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ 0, 1 ]
 }
 
@@ -50,7 +52,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ 0 ]
 }
 
@@ -103,9 +105,10 @@ tracks/0/keys = {
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 381, 1147 )
+position = Vector2( 350, 1156 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( -13, 12 )
 current = true
 limit_left = 0
 limit_right = 720
@@ -119,18 +122,18 @@ cell_quadrant_size = 1
 cell_custom_transform = Transform2D( 80, 0, 0, 80, 0, 0 )
 show_collision = true
 format = 1
-tile_data = PoolIntArray( -983040, 0, 0, -983032, 0, 0, -917504, 0, 0, -917496, 0, 0, -851968, 0, 0, -851960, 0, 0, -786432, 0, 0, -786424, 0, 0, -720896, 0, 0, -720888, 0, 0, -655360, 0, 0, -655352, 0, 0, -589824, 0, 0, -589816, 0, 0, -524288, 0, 0, -524280, 0, 0, -458752, 0, 0, -458744, 0, 0, -393216, 0, 0, -393208, 0, 0, -327680, 0, 0, -327672, 0, 0, -262144, 0, 0, -262136, 0, 0, -196608, 0, 0, -196600, 0, 0, -131072, 0, 0, -131064, 0, 0, -65536, 0, 0, -65528, 0, 0, 0, 0, 0, 8, 0, 0, 65536, 0, 0, 65544, 0, 0, 131072, 0, 0, 131080, 0, 0, 196608, 0, 0, 196616, 0, 0, 262144, 0, 0, 262152, 0, 0, 327680, 0, 0, 327688, 0, 0, 393216, 0, 0, 393224, 0, 0, 458752, 0, 0, 458760, 0, 0, 524288, 0, 0, 524296, 0, 0, 589824, 0, 0, 589832, 0, 0, 655360, 0, 0, 655368, 0, 0, 720896, 0, 0, 720904, 0, 0, 786432, 0, 0, 786440, 0, 0, 851968, 0, 0, 851976, 0, 0, 917504, 0, 0, 917512, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0 )
 
 [node name="Spring" type="Area2D" parent="."]
+z_index = 1
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Spring"]
-position = Vector2( 168.327, 924.984 )
+position = Vector2( 168, 922 )
 texture = ExtResource( 3 )
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spring"]
-position = Vector2( 168.5, 933.5 )
+position = Vector2( 168, 930 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spring"]
@@ -140,15 +143,16 @@ anims/active = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
 [node name="Spring2" type="Area2D" parent="."]
+z_index = 1
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Spring2"]
-position = Vector2( 362, 787.5 )
+position = Vector2( 521, 691 )
 texture = ExtResource( 3 )
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spring2"]
-position = Vector2( 362, 794.5 )
+position = Vector2( 522, 699 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spring2"]
@@ -156,6 +160,24 @@ root_node = NodePath("../CollisionShape2D")
 anims/RESET = SubResource( 5 )
 anims/active = SubResource( 6 )
 anims/idle = SubResource( 7 )
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Ground"]
+position = Vector2( 403, 1135 )
+scale = Vector2( 2.87109, 1.41667 )
+texture = ExtResource( 5 )
+offset = Vector2( -17.2408, 76.2354 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+position = Vector2( 351, 1250 )
+scale = Vector2( 2.87109, 1.41667 )
+polygon = PoolVector2Array( 52.5932, -31.7647, 79.7606, -19.0588, 95.434, -15.5294, 112.849, -4.94122, 133.399, 17.647, 128, 22, 112.849, 22.5882, 58.166, 26.8235, 21.5946, 24, -20.5497, 24, -57.8177, 31.7647, -86.0299, 28.2353, -97.8721, 24.7059, -129.219, 24.7059, -110.411, -0.705933, -99.9619, -7.76471, -92.6476, -13.4118, -85, -18.7, -79.4123, -25.4118, -70.7048, -28.9412, -34.1333, -37.4118, -18.1116, -33.1765, -3.83129, -29.6471, 6.96598, -31.7647, 45.6272, -33.1765 )
+
+[node name="Asteroid" parent="." instance=ExtResource( 6 )]
+
+[node name="Asteroid2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 347, -228 )
 
 [connection signal="body_entered" from="Spring" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
