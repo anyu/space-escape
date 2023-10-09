@@ -6,6 +6,8 @@
 [ext_resource path="res://scripts/Spring.gd" type="Script" id=4]
 [ext_resource path="res://images/ground.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Asteroid.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Meteoroid.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/World.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41.5, 23.5 )
@@ -53,52 +55,6 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "active"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
 "values": [ 0 ]
 }
 
@@ -194,10 +150,20 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Curve2D" id=14]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 720, 1280, 0, 0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 720, 1280, 0, 0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 0 )
+}
+
 [node name="World" type="Node2D"]
+script = ExtResource( 8 )
+meteoroid_scene = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 350, 1156 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -13, 12 )
@@ -231,6 +197,9 @@ polygon = PoolVector2Array( 52.5932, -31.7647, 79.7606, -19.0588, 95.434, -15.52
 [node name="Spring" type="Area2D" parent="."]
 z_index = 1
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Spring"]
 position = Vector2( 168, 922 )
@@ -249,31 +218,15 @@ anims/idle = SubResource( 4 )
 
 [node name="Asteroid" parent="." instance=ExtResource( 6 )]
 
-[node name="Spring2" type="Area2D" parent="."]
-z_index = 1
-script = ExtResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="Spring2"]
-position = Vector2( 515, 691 )
-texture = ExtResource( 3 )
-hframes = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring2"]
-position = Vector2( 515, 699 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring2"]
-root_node = NodePath("../CollisionShape2D")
-anims/RESET = SubResource( 5 )
-anims/active = SubResource( 6 )
-anims/idle = SubResource( 7 )
-
 [node name="Asteroid2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 347, -228 )
 
 [node name="Spring3" type="Area2D" parent="."]
 z_index = 1
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Spring3"]
 position = Vector2( 241, 437 )
@@ -297,6 +250,9 @@ position = Vector2( 69, -484 )
 position = Vector2( 426, -229 )
 z_index = 1
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Spring4"]
 position = Vector2( 241, 437 )
@@ -315,8 +271,27 @@ anims/idle = SubResource( 13 )
 
 [node name="Asteroid4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 495, -713 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Meteoroid" parent="." instance=ExtResource( 7 )]
+collision_layer = 0
+
+[node name="MeteoroidTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MeteoroidPath" type="Path2D" parent="."]
+curve = SubResource( 14 )
+
+[node name="MeteoroidSpawnLocation" type="PathFollow2D" parent="MeteoroidPath"]
 
 [connection signal="body_entered" from="Spring" to="Player" method="_on_Spring_body_entered"]
-[connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_entered" from="Spring3" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_entered" from="Spring4" to="Player" method="_on_Spring_body_entered"]
+[connection signal="timeout" from="MeteoroidTimer" to="." method="_on_MeteoroidTimer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

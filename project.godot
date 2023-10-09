@@ -79,6 +79,13 @@ move_up={
 "events": [  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="environment"
+2d_physics/layer_2="player"
+2d_physics/layer_3="springs"
+2d_physics/layer_4="meteroids"
+
 [physics]
 
 common/enable_pause_aware_picking=true

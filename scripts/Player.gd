@@ -61,4 +61,5 @@ func play_animation(animation_name):
 	animation_player.play(animation_name)
 
 func _on_Spring_body_entered(body):
-	y_velo = -SPRING_FORCE
+	if body.name == "Player":
+		y_velo = -SPRING_FORCE
