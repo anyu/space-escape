@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -106,6 +106,52 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=15]
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "active"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
 [sub_resource type="Curve2D" id=14]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 720, 8, 0, 0, 0, 0, 720, 1288, 0, 0, 0, 0, 0, 1288, 0, 0, 0, 0, 0, 8 )
@@ -151,7 +197,77 @@ polygon = PoolVector2Array( 52.5932, -31.7647, 79.7606, -19.0588, 95.434, -15.52
 
 [node name="Asteroid" parent="." instance=ExtResource( 6 )]
 
+[node name="Spring1" type="Area2D" parent="."]
+z_index = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Spring1"]
+position = Vector2( 241, 437 )
+texture = ExtResource( 3 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring1"]
+position = Vector2( 242, 445 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring1"]
+root_node = NodePath("../CollisionShape2D")
+anims/RESET = SubResource( 8 )
+anims/active = SubResource( 9 )
+anims/idle = SubResource( 10 )
+
+[node name="Asteroid-med1" parent="." instance=ExtResource( 6 )]
+position = Vector2( 69, -484 )
+
+[node name="Spring2" type="Area2D" parent="."]
+position = Vector2( 426, -229 )
+z_index = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Spring2"]
+position = Vector2( 241, 437 )
+texture = ExtResource( 3 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring2"]
+position = Vector2( 242, 445 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring2"]
+root_node = NodePath("../CollisionShape2D")
+anims/RESET = SubResource( 11 )
+anims/active = SubResource( 12 )
+anims/idle = SubResource( 13 )
+
+[node name="Asteroid-med2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 495, -713 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-med3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -9, -1417 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-lg" parent="." instance=ExtResource( 9 )]
+position = Vector2( 440, -208 )
+
+[node name="Asteroid-lg2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 184, -1056 )
+
+[node name="Asteroid-lg3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 16, -2216 )
+
 [node name="Spring3" type="Area2D" parent="."]
+position = Vector2( 144, -1200 )
 z_index = 1
 script = ExtResource( 4 )
 __meta__ = {
@@ -169,41 +285,18 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spring3"]
 root_node = NodePath("../CollisionShape2D")
-anims/RESET = SubResource( 8 )
-anims/active = SubResource( 9 )
-anims/idle = SubResource( 10 )
+anims/RESET = SubResource( 15 )
+anims/active = SubResource( 16 )
+anims/idle = SubResource( 17 )
 
-[node name="Asteroid3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 69, -484 )
+[node name="Asteroid-sm" parent="." instance=ExtResource( 10 )]
+position = Vector2( -64, -744 )
 
-[node name="Spring4" type="Area2D" parent="."]
-position = Vector2( 426, -229 )
-z_index = 1
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Asteroid-sm2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 456, -1192 )
 
-[node name="Sprite" type="Sprite" parent="Spring4"]
-position = Vector2( 241, 437 )
-texture = ExtResource( 3 )
-hframes = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring4"]
-position = Vector2( 242, 445 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring4"]
-root_node = NodePath("../CollisionShape2D")
-anims/RESET = SubResource( 11 )
-anims/active = SubResource( 12 )
-anims/idle = SubResource( 13 )
-
-[node name="Asteroid4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 495, -713 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Asteroid-sm3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 216, -1680 )
 
 [node name="MeteoroidTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -224,13 +317,8 @@ position = Vector2( 1280, 5.59506e-05 )
 rotation = 1.5708
 collision_layer = 0
 
-[node name="Asteroid-lg" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, -208 )
-
-[node name="Asteroid-sm" parent="." instance=ExtResource( 10 )]
-position = Vector2( -64, -744 )
-
+[connection signal="body_entered" from="Spring1" to="Player" method="_on_Spring_body_entered"]
+[connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_entered" from="Spring3" to="Player" method="_on_Spring_body_entered"]
-[connection signal="body_entered" from="Spring4" to="Player" method="_on_Spring_body_entered"]
 [connection signal="timeout" from="MeteoroidTimer" to="." method="_on_MeteoroidTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
