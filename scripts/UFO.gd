@@ -1,7 +1,5 @@
 extends Area2D
 
-var speed = 150
-
 func start_movement(initial_pos, final_pos):
 	$Tween.interpolate_property(self, "position", initial_pos, final_pos, 1.0, Tween.TRANS_CUBIC)
 	$Tween.start()

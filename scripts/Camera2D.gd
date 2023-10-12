@@ -1,7 +1,7 @@
 extends Camera2D
 
 
-var speed = 200
+var MOVE_SPEED = 200
 
 func _process(delta):
-	position.y -= speed * delta
+	position.y -= MOVE_SPEED * delta
