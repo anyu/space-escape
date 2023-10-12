@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/Spring.gd" type="Script" id=4]
 [ext_resource path="res://images/ground.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Asteroid.tscn" type="PackedScene" id=6]
+[ext_resource path="res://audio/bounce1.mp3" type="AudioStream" id=7]
 [ext_resource path="res://scripts/World.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Asteroid_lg.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Asteroid_sm.tscn" type="PackedScene" id=10]
@@ -175,6 +176,10 @@ limit_right = 720
 limit_bottom = 1280
 limit_smoothed = true
 
+[node name="Bounce" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2( -350, -1156 )
+stream = ExtResource( 7 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 80, 80 )
@@ -205,16 +210,16 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Spring1"]
+[node name="Sprite" type="Sprite" parent="Spring1" groups=["spring1"]]
 position = Vector2( 241, 437 )
 texture = ExtResource( 3 )
 hframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring1" groups=["spring1"]]
 position = Vector2( 242, 445 )
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring1" groups=["spring1"]]
 root_node = NodePath("../CollisionShape2D")
 anims/RESET = SubResource( 8 )
 anims/active = SubResource( 9 )
@@ -231,16 +236,16 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Spring2"]
+[node name="Sprite" type="Sprite" parent="Spring2" groups=["spring1"]]
 position = Vector2( 241, 437 )
 texture = ExtResource( 3 )
 hframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring2" groups=["spring1"]]
 position = Vector2( 242, 445 )
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring2" groups=["spring1"]]
 root_node = NodePath("../CollisionShape2D")
 anims/RESET = SubResource( 11 )
 anims/active = SubResource( 12 )
@@ -313,7 +318,9 @@ position = Vector2( 720, 0 )
 rotate = false
 
 [connection signal="body_entered" from="Spring1" to="Player" method="_on_Spring_body_entered"]
+[connection signal="body_exited" from="Spring1" to="Player" method="_on_Spring_body_exited"]
 [connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
+[connection signal="body_exited" from="Spring2" to="Player" method="_on_Spring_body_exited"]
 [connection signal="body_entered" from="Spring3" to="Player" method="_on_Spring_body_entered"]
 [connection signal="timeout" from="UFOTimer" to="." method="_on_UFOTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
