@@ -1,9 +1,7 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://tilesets/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://images/springs.png" type="Texture" id=3]
-[ext_resource path="res://scripts/Spring.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Spring.tscn" type="PackedScene" id=3]
 [ext_resource path="res://images/ground.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Asteroid.tscn" type="PackedScene" id=6]
 [ext_resource path="res://audio/bounce1.mp3" type="AudioStream" id=7]
@@ -11,147 +9,6 @@
 [ext_resource path="res://scenes/Asteroid_lg.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Asteroid_sm.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Ufo.tscn" type="PackedScene" id=11]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 41.5, 23.5 )
-
-[sub_resource type="Animation" id=8]
-length = 0.001
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "active"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=11]
-length = 0.001
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "active"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=15]
-length = 0.001
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=16]
-resource_name = "active"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-
-[sub_resource type="Animation" id=17]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
 
 [sub_resource type="Curve2D" id=14]
 _data = {
@@ -180,15 +37,10 @@ limit_smoothed = true
 position = Vector2( -350, -1156 )
 stream = ExtResource( 7 )
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 80, 80 )
-cell_quadrant_size = 1
-cell_custom_transform = Transform2D( 80, 0, 0, 80, 0, 0 )
-show_collision = true
-format = 1
-
 [node name="Ground" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Ground"]
 position = Vector2( 403, 1135 )
@@ -202,107 +54,69 @@ scale = Vector2( 2.87109, 1.41667 )
 polygon = PoolVector2Array( 52.5932, -31.7647, 79.7606, -19.0588, 95.434, -15.5294, 112.849, -4.94122, 133.399, 17.647, 128, 22, 112.849, 22.5882, 58.166, 26.8235, 21.5946, 24, -20.5497, 24, -57.8177, 31.7647, -86.0299, 28.2353, -97.8721, 24.7059, -129.219, 24.7059, -110.411, -0.705933, -99.9619, -7.76471, -92.6476, -13.4118, -85, -18.7, -79.4123, -25.4118, -70.7048, -28.9412, -34.1333, -37.4118, -18.1116, -33.1765, -3.83129, -29.6471, 6.96598, -31.7647, 45.6272, -33.1765 )
 
 [node name="Asteroid" parent="." instance=ExtResource( 6 )]
+position = Vector2( 136, 1008 )
 
-[node name="Spring1" type="Area2D" parent="."]
-z_index = 1
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Spring" parent="." instance=ExtResource( 3 )]
+position = Vector2( 480, 724 )
+scale = Vector2( 0.5, 0.5 )
 
-[node name="Sprite" type="Sprite" parent="Spring1" groups=["spring1"]]
-position = Vector2( 241, 437 )
-texture = ExtResource( 3 )
-hframes = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring1" groups=["spring1"]]
-position = Vector2( 242, 445 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring1" groups=["spring1"]]
-root_node = NodePath("../CollisionShape2D")
-anims/RESET = SubResource( 8 )
-anims/active = SubResource( 9 )
-anims/idle = SubResource( 10 )
+[node name="Spring2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 128, 32 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Asteroid-med1" parent="." instance=ExtResource( 6 )]
-position = Vector2( 69, -484 )
-
-[node name="Spring2" type="Area2D" parent="."]
-position = Vector2( 426, -229 )
-z_index = 1
-script = ExtResource( 4 )
+position = Vector2( 129, 94 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Spring2" groups=["spring1"]]
-position = Vector2( 241, 437 )
-texture = ExtResource( 3 )
-hframes = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring2" groups=["spring1"]]
-position = Vector2( 242, 445 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring2" groups=["spring1"]]
-root_node = NodePath("../CollisionShape2D")
-anims/RESET = SubResource( 11 )
-anims/active = SubResource( 12 )
-anims/idle = SubResource( 13 )
-
 [node name="Asteroid-med2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 495, -713 )
+position = Vector2( 640, 234 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Asteroid-med3" parent="." instance=ExtResource( 6 )]
-position = Vector2( -9, -1417 )
+position = Vector2( 52, -681 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Asteroid-lg" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, -208 )
-
-[node name="Asteroid-lg2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 184, -1056 )
-
-[node name="Asteroid-lg3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 16, -2216 )
-
-[node name="Spring3" type="Area2D" parent="."]
-position = Vector2( 144, -1200 )
-z_index = 1
-script = ExtResource( 4 )
+position = Vector2( 488, 800 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Spring3"]
-position = Vector2( 241, 437 )
-texture = ExtResource( 3 )
-hframes = 2
+[node name="Asteroid-lg2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 399, -382 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring3"]
-position = Vector2( 242, 445 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spring3"]
-root_node = NodePath("../CollisionShape2D")
-anims/RESET = SubResource( 15 )
-anims/active = SubResource( 16 )
-anims/idle = SubResource( 17 )
+[node name="Asteroid-lg3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 59, -1273 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Asteroid-sm" parent="." instance=ExtResource( 10 )]
-position = Vector2( -64, -744 )
+position = Vector2( 248, 397 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Asteroid-sm2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 456, -1192 )
+position = Vector2( 584, -585 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Asteroid-sm3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 216, -1680 )
+position = Vector2( 387, -932 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="UFOTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -317,10 +131,9 @@ curve = SubResource( 14 )
 position = Vector2( 720, 0 )
 rotate = false
 
-[connection signal="body_entered" from="Spring1" to="Player" method="_on_Spring_body_entered"]
-[connection signal="body_exited" from="Spring1" to="Player" method="_on_Spring_body_exited"]
+[connection signal="body_entered" from="Spring" to="Player" method="_on_Spring_body_entered"]
+[connection signal="body_exited" from="Spring" to="Player" method="_on_Spring_body_exited"]
 [connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_exited" from="Spring2" to="Player" method="_on_Spring_body_exited"]
-[connection signal="body_entered" from="Spring3" to="Player" method="_on_Spring_body_entered"]
 [connection signal="timeout" from="UFOTimer" to="." method="_on_UFOTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

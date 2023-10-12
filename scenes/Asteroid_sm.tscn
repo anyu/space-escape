@@ -5,12 +5,10 @@
 [node name="Asteroid" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 214, 965 )
 scale = Vector2( 1.7247, 1.53659 )
 texture = ExtResource( 1 )
-offset = Vector2( -24.9227, 10.0575 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 182, 972 )
-scale = Vector2( 1.7247, 1.53659 )
-polygon = PoolVector2Array( 2.31924, -13.0158, 10.4366, -7.15869, 14.4953, 3.25397, 12.7558, 16.9206, -0.579811, 23.4285, -16, 21.5, -27, 12.1, -28.9905, 1.95239, -20.8732, -8.46027, -6.37792, -12.3651 )
+position = Vector2( 10, -3 )
+scale = Vector2( 2.245, 2 )
+polygon = PoolVector2Array( 2.31924, -13.0158, 10.4366, -7.15869, 14.6993, 0.5, 15.1448, 10, 4.00891, 16, -10.6904, 16.5, -17.8174, 11, -22.7172, 7, -23.1626, -3, -20.8732, -8.46027, -9.79955, -12.5 )

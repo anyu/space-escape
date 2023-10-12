@@ -63,8 +63,9 @@ func play_animation(animation_name):
 func _on_Spring_body_entered(body):
 	if body.name == "Player":
 		y_velo = -SPRING_FORCE
-	$Bounce.play()
+		$Bounce.play()
 
 func _on_Spring_body_exited(body):
-	yield(get_tree().create_timer(1.0), "timeout")
-	$Bounce.stop()
+	if body.name == "Player":
+		yield(get_tree().create_timer(1.0), "timeout")
+		$Bounce.stop()
