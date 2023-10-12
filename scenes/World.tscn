@@ -6,10 +6,10 @@
 [ext_resource path="res://scripts/Spring.gd" type="Script" id=4]
 [ext_resource path="res://images/ground.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Asteroid.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Meteoroid.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/World.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Asteroid_lg.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Asteroid_sm.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Ufo.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 41.5, 23.5 )
@@ -154,11 +154,12 @@ tracks/0/keys = {
 
 [sub_resource type="Curve2D" id=14]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 720, 8, 0, 0, 0, 0, 720, 1288, 0, 0, 0, 0, 0, 1288, 0, 0, 0, 0, 0, 8 )
+"points": PoolVector2Array( 0, 0, 0, 0, 720, 0, 80.7261, 0, -80.7261, 0, 544, 56, 56.7605, -2.52269, -56.7605, 2.52269, 344, -16, 72.3171, 2.94314, -72.3171, -2.94314, 128, 64, 0, 0, 0, 0, 0, 0 )
 }
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
+ufo_scene = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 350, 1156 )
@@ -298,27 +299,21 @@ position = Vector2( 456, -1192 )
 [node name="Asteroid-sm3" parent="." instance=ExtResource( 10 )]
 position = Vector2( 216, -1680 )
 
-[node name="MeteoroidTimer" type="Timer" parent="."]
+[node name="UFOTimer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
-one_shot = true
 
-[node name="MeteoroidPath" type="Path2D" parent="."]
+[node name="UFOPath" type="Path2D" parent="."]
 curve = SubResource( 14 )
 
-[node name="MeteoroidSpawnLocation" type="PathFollow2D" parent="MeteoroidPath"]
-position = Vector2( 0, 8 )
+[node name="UFOSpawnLocation" type="PathFollow2D" parent="UFOPath"]
+position = Vector2( 720, 0 )
 rotate = false
-
-[node name="Meteoroid" parent="MeteoroidPath/MeteoroidSpawnLocation" instance=ExtResource( 7 )]
-position = Vector2( 1280, 5.59506e-05 )
-rotation = 1.5708
-collision_layer = 0
 
 [connection signal="body_entered" from="Spring1" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_entered" from="Spring3" to="Player" method="_on_Spring_body_entered"]
-[connection signal="timeout" from="MeteoroidTimer" to="." method="_on_MeteoroidTimer_timeout"]
+[connection signal="timeout" from="UFOTimer" to="." method="_on_UFOTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
