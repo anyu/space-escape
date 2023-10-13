@@ -120,12 +120,15 @@ __meta__ = {
 }
 
 [node name="UFOTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 5.0
+autostart = true
 
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
+one_shot = true
+autostart = true
 
 [node name="UFOPath" type="Path2D" parent="."]
+visible = false
 curve = SubResource( 14 )
 script = ExtResource( 12 )
 
@@ -152,4 +155,5 @@ script = ExtResource( 1 )
 [connection signal="body_exited" from="Spring" to="Player" method="_on_Spring_body_exited"]
 [connection signal="body_entered" from="Spring2" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_exited" from="Spring2" to="Player" method="_on_Spring_body_exited"]
+[connection signal="timeout" from="UFOTimer" to="." method="_on_UFOTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

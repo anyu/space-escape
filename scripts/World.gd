@@ -2,6 +2,8 @@ extends Node2D
 
 export(PackedScene) var ufo_scene
 
+onready var camera = get_node("Camera2D")
+
 func game_over():
 	$UFOTimer.stop()
 
@@ -15,7 +17,8 @@ func _ready():
 func _on_StartTimer_timeout():
 	$UFOTimer.start()
 
-#func _on_UFOTimer_timeout():
-#	var ufo = ufo_scene.instance()
-#	add_child(ufo)
-
+func _on_UFOTimer_timeout():
+	var ufo = ufo_scene.instance()
+	ufo.position.x = 0
+	ufo.position.y = camera.global_position.y
+	add_child(ufo)
