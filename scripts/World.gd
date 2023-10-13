@@ -18,4 +18,4 @@ func _on_StartTimer_timeout():
 func _on_UFOTimer_timeout():
 	var ufo = ufo_scene.instance()
 	add_child(ufo)
-	ufo.start_movement(Vector2(0, 50), Vector2(700,50))
+
