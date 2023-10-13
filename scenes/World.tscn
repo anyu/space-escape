@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/Asteroid_sm.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Ufo.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scripts/UFOPath.gd" type="Script" id=12]
+[ext_resource path="res://audio/ohno.mp3" type="AudioStream" id=13]
 
 [sub_resource type="Curve2D" id=14]
 _data = {
@@ -31,6 +32,9 @@ __meta__ = {
 [node name="Bounce" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2( -350, -1156 )
 stream = ExtResource( 7 )
+
+[node name="OhNo" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 13 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
 __meta__ = {

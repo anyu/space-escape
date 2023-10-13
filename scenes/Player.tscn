@@ -113,3 +113,9 @@ anims/RESET = SubResource( 5 )
 anims/idle = SubResource( 3 )
 anims/jump = SubResource( 4 )
 anims/walk = SubResource( 6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 3, -6.5 )
+scale = Vector2( 4.2, 6.35 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

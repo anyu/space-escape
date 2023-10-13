@@ -68,3 +68,12 @@ func _on_Spring_body_exited(body):
 	if body.name == "Player":
 		yield(get_tree().create_timer(1.0), "timeout")
 		$Bounce.stop()
+
+func end_game():
+	print("game over")
+	$OhNo.play()
+	yield(get_tree().create_timer(10.0), "timeout")
+	$OhNo.stop()
+	
+func _on_VisibilityNotifier2D_screen_exited():
+	end_game()
