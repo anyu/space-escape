@@ -14,7 +14,7 @@ var y_velo = 0
 var facing_right = false
 
 func _physics_process(_delta):
-	screen_wrap()
+	screen_constrain()
 	var move_dir = 0
 	if Input.is_action_pressed("move_right"):
 		move_dir += 1
@@ -22,7 +22,6 @@ func _physics_process(_delta):
 		move_dir -= 1
 	var _m = move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0,-1))
 	
-		
 	var grounded = is_on_floor()
 	y_velo += GRAVITY
 	if grounded and Input.is_action_just_pressed("jump"):
@@ -45,11 +44,11 @@ func _physics_process(_delta):
 	else:
 		play_animation("jump")
 
-func screen_wrap():
+func screen_constrain():
 	if position.x > screen_size.x:
-		position.x = 0;
-	if position.x < 0:
 		position.x = screen_size.x
+	if position.x < 0:
+		position.x = 0
 	
 func flip():
 	facing_right = !facing_right
