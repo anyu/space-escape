@@ -15,7 +15,7 @@ func _ready():
 func _on_StartTimer_timeout():
 	$UFOTimer.start()
 
-func _on_UFOTimer_timeout():
-	var ufo = ufo_scene.instance()
-	add_child(ufo)
+#func _on_UFOTimer_timeout():
+#	var ufo = ufo_scene.instance()
+#	add_child(ufo)
 
