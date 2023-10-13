@@ -9,6 +9,7 @@ const SPRING_FORCE = 2000
 onready var screen_size = get_viewport_rect().size
 onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
+onready var camera = get_node("../Camera2D")
 
 var y_velo = 0
 var facing_right = false
@@ -70,10 +71,13 @@ func _on_Spring_body_exited(body):
 		$Bounce.stop()
 
 func end_game():
-	print("game over")
-	$OhNo.play()
+	$Falling.play()
 	yield(get_tree().create_timer(10.0), "timeout")
-	$OhNo.stop()
+	$Falling.stop()
 	
 func _on_VisibilityNotifier2D_screen_exited():
-	end_game()
+#	Don't trigger end game if player exits top of screen
+	if global_position.y - (sprite.texture.get_size().y / 2) < camera.global_position.y:
+		pass
+	else:
+		end_game()
