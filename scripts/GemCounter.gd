@@ -8,4 +8,3 @@ func _ready():
 func _on_Gem_gem_collected():
 	gems_collected += 1
 	_ready()
-

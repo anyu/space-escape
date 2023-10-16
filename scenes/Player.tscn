@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://images/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://audio/bounce.mp3" type="AudioStream" id=3]
+[ext_resource path="res://audio/falling.mp3" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 42.625, 63 )
@@ -146,5 +148,14 @@ anims/walk = SubResource( 6 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 3, -6.5 )
 scale = Vector2( 4.2, 6.35 )
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -350, -1156 )
+stream = ExtResource( 3 )
+volume_db = 24.0
+
+[node name="Falling" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 1.0
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

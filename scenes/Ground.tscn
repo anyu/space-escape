@@ -1,3 +1,16 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://images/ground.png" type="Texture" id=1]
 
 [node name="Ground" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 403, 1135 )
+scale = Vector2( 2.87109, 1.41667 )
+texture = ExtResource( 1 )
+offset = Vector2( -17.2408, 76.2354 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 351, 1250 )
+scale = Vector2( 2.87109, 1.41667 )
+polygon = PoolVector2Array( 52.5932, -31.7647, 79.7606, -19.0588, 95.434, -15.5294, 112.849, -4.94122, 133.399, 17.647, 128, 22, 112.849, 22.5882, 58.166, 26.8235, 21.5946, 24, -20.5497, 24, -57.8177, 31.7647, -86.0299, 28.2353, -97.8721, 24.7059, -129.219, 24.7059, -110.411, -0.705933, -99.9619, -7.76471, -92.6476, -13.4118, -85, -18.7, -79.4123, -25.4118, -70.7048, -28.9412, -34.1333, -37.4118, -18.1116, -33.1765, -3.83129, -29.6471, 6.96598, -31.7647, 45.6272, -33.1765 )
