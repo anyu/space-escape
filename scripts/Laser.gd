@@ -1,12 +1,12 @@
 extends Area2D
 
-export var speed = 500
+export var MOVE_SPEED = 500
 
 func _ready():
 	$LaserBullet.play()
 	
 func _physics_process(delta):
-	global_position.y += speed * delta
+	global_position.y += MOVE_SPEED * delta
 	
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

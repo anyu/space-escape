@@ -1,5 +1,5 @@
 extends Area2D
-var speed = 250
+var MOVE_SPEED = 250
 
 var laser_scene = preload("res://scenes/Laser.tscn")
 onready var sprite = $Sprite
@@ -9,7 +9,7 @@ func _ready():
 	$UFOArrival.play()
 	
 func _process(delta):
-	global_position.x += speed * delta
+	global_position.x += MOVE_SPEED * delta
 	
 func _on_LaserTimer_timeout():
 	var laser = laser_scene.instance()
