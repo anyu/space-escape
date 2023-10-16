@@ -31,7 +31,6 @@ visible = false
 
 [node name="LaserTimer" type="Timer" parent="."]
 physics_interpolation_mode = 2
-wait_time = 0.5
 
 [node name="UFOArrival" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )

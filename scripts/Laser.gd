@@ -2,6 +2,9 @@ extends Area2D
 
 export var MOVE_SPEED = 500
 
+#onready var ufo = get_parent()
+#onready var world = ufo.get_parent()
+
 func _ready():
 	$LaserBullet.play()
 
@@ -14,3 +17,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Laser_body_entered(body):
 	if body.name == "Player":
 		$Ouch.play()
+#		var player = world.get_node("Player")
+#		player.play_animation("hit")
+		
+	
