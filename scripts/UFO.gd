@@ -3,7 +3,7 @@ var MOVE_SPEED = 250
 
 var laser_scene = preload("res://scenes/Laser.tscn")
 onready var sprite = $Sprite
-#
+
 func _ready():
 	$LaserTimer.start()
 	$UFOArrival.play()
