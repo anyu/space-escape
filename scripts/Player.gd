@@ -14,6 +14,7 @@ onready var camera = get_node("../Camera2D")
 var y_velo = 0
 var facing_right = false
 var is_dead = false
+var gems_collected = 0
 
 func _physics_process(_delta):
 	screen_constrain()
@@ -71,6 +72,9 @@ func _on_Spring_body_exited(body):
 	if body.name == "Player":
 		yield(get_tree().create_timer(1.0), "timeout")
 	$Bounce.stop()
+	
+func collect_gem():
+	gems_collected+=1
 
 func die():
 	is_dead = true
