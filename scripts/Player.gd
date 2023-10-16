@@ -13,37 +13,39 @@ onready var camera = get_node("../Camera2D")
 
 var y_velo = 0
 var facing_right = false
+var is_dead = false
 
 func _physics_process(_delta):
 	screen_constrain()
-	var move_dir = 0
-	if Input.is_action_pressed("move_right"):
-		move_dir += 1
-	if Input.is_action_pressed("move_left"):	
-		move_dir -= 1
-	var _m = move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0,-1))
-	
-	var grounded = is_on_floor()
-	y_velo += GRAVITY
-	if grounded and Input.is_action_just_pressed("jump"):
-		y_velo = -JUMP_FORCE
-	if grounded and y_velo >= 5:
-		y_velo = 5
-	if y_velo > MAX_FALL_SPEED:
-		y_velo = MAX_FALL_SPEED
+	if !is_dead:
+		var move_dir = 0
+		if Input.is_action_pressed("move_right"):
+			move_dir += 1
+		if Input.is_action_pressed("move_left"):	
+			move_dir -= 1
+		var _m = move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0,-1))
 		
-	if facing_right and move_dir < 0:
-		flip()
-	if !facing_right and move_dir > 0:
-		flip()
-	
-	if grounded:
-		if move_dir == 0:
-			play_animation("idle")
+		var grounded = is_on_floor()
+		y_velo += GRAVITY
+		if grounded and Input.is_action_just_pressed("jump"):
+			y_velo = -JUMP_FORCE
+		if grounded and y_velo >= 5:
+			y_velo = 5
+		if y_velo > MAX_FALL_SPEED:
+			y_velo = MAX_FALL_SPEED
+			
+		if facing_right and move_dir < 0:
+			flip()
+		if !facing_right and move_dir > 0:
+			flip()
+		
+		if grounded:
+			if move_dir == 0:
+				play_animation("idle")
+			else:
+				play_animation("walk")
 		else:
-			play_animation("walk")
-	else:
-		play_animation("jump")
+			play_animation("jump")
 
 func screen_constrain():
 	if position.x > screen_size.x:
@@ -70,7 +72,8 @@ func _on_Spring_body_exited(body):
 		yield(get_tree().create_timer(1.0), "timeout")
 	$Bounce.stop()
 
-func scream():
+func die():
+	is_dead = true
 	$Falling.play()
 	yield(get_tree().create_timer(10.0), "timeout")
 	$Falling.stop()
@@ -80,5 +83,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 	if global_position.y - (sprite.texture.get_size().y / 2) < camera.global_position.y:
 		pass
 	else:
-		scream()
+		die()
 		get_parent().end_game()
