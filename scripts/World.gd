@@ -5,15 +5,12 @@ export(PackedScene) var laser_scene
 
 onready var camera = get_node("Camera2D")
 
-func game_over():
-	$UFOTimer.stop()
-
-func new_game():
-	$StartTimer.start()
-
 func _ready():
 	randomize()
 	new_game()
+
+func new_game():
+	$StartTimer.start()
 
 func _on_StartTimer_timeout():
 	$UFOTimer.start()
@@ -24,3 +21,7 @@ func _on_UFOTimer_timeout():
 	ufo.position.y = camera.global_position.y
 	add_child(ufo)
 
+func end_game():
+	$UFOTimer.stop()
+	yield(get_tree().create_timer(2.5), "timeout")	
+	get_tree().change_scene("res://scenes/GameOver.tscn")

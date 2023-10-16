@@ -68,9 +68,9 @@ func _on_Spring_body_entered(body):
 func _on_Spring_body_exited(body):
 	if body.name == "Player":
 		yield(get_tree().create_timer(1.0), "timeout")
-		$Bounce.stop()
+	$Bounce.stop()
 
-func end_game():
+func scream():
 	$Falling.play()
 	yield(get_tree().create_timer(10.0), "timeout")
 	$Falling.stop()
@@ -80,4 +80,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 	if global_position.y - (sprite.texture.get_size().y / 2) < camera.global_position.y:
 		pass
 	else:
-		end_game()
+		scream()
+		get_parent().end_game()

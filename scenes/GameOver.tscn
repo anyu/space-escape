@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/GameOver.gd" type="Script" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0117647, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 1 )
+margin_right = 727.0
+margin_bottom = 643.0
+rect_scale = Vector2( 0.982428, 1.99411 )
+theme = SubResource( 2 )
+color = Color( 0.0117647, 0, 0, 1 )
+
+[node name="Game Over" type="Label" parent="."]
+margin_left = 241.0
+margin_top = 405.0
+margin_right = 317.0
+margin_bottom = 419.0
+rect_scale = Vector2( 3.28126, 3.28126 )
+text = "Game Over"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="RestartButton" type="Button" parent="."]
+margin_left = 272.0
+margin_top = 504.0
+margin_right = 347.0
+margin_bottom = 524.0
+rect_scale = Vector2( 2.23747, 2.23747 )
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="."]
+margin_left = 270.0
+margin_top = 582.0
+margin_right = 345.0
+margin_bottom = 602.0
+rect_scale = Vector2( 2.23747, 2.20273 )
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/fade = SubResource( 3 )
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
