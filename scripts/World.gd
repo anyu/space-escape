@@ -24,7 +24,7 @@ func _on_UFOTimer_timeout():
 	ufo.position.x = 0
 	ufo.position.y = camera.global_position.y
 	add_child(ufo)
-
+	
 func end_game():
 	$UFOTimer.stop()
 	yield(get_tree().create_timer(2.5), "timeout")	

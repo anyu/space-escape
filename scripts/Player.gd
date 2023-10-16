@@ -72,9 +72,6 @@ func _on_Spring_body_exited(body):
 	if body.name == "Player":
 		yield(get_tree().create_timer(1.0), "timeout")
 	$Bounce.stop()
-	
-func collect_gem():
-	gems_collected+=1
 
 func die():
 	is_dead = true
