@@ -2,6 +2,7 @@ extends Node2D
 
 export(PackedScene) var ufo_scene
 export(PackedScene) var laser_scene
+#export(PackedScene) var gem_counter_scene
 
 onready var camera = get_node("Camera2D")
 
@@ -15,6 +16,8 @@ func new_game():
 
 func _on_StartTimer_timeout():
 	$UFOTimer.start()
+#	var gem_counter = gem_counter_scene.instance()
+#	gem_counter.position = camera.position
 
 func _on_UFOTimer_timeout():
 	var ufo = ufo_scene.instance()
