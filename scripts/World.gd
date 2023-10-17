@@ -6,9 +6,7 @@ export(PackedScene) var laser_scene
 
 onready var camera = get_node("Camera2D")
 
-
 func _ready():
-	randomize()
 	new_game()
 
 func new_game():

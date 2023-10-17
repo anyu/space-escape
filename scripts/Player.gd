@@ -77,6 +77,9 @@ func _on_Spring_body_exited(body):
 	if body.name == "Player":
 		yield(get_tree().create_timer(1.0), "timeout")
 	$Bounce.stop()
+	
+func collect_gem():
+	$CollectGem.play()
 
 func lose_health():
 	current_hp -= DAMAGE_STEP
