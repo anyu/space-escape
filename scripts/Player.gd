@@ -22,6 +22,7 @@ var y_velo = 0
 var facing_right = false
 var is_hit = false
 var is_dead = false
+var game_won = false
 var gems_collected = 0
 var current_hp = MAX_HP
 
@@ -32,7 +33,7 @@ func _physics_process(_delta):
 		if !is_dead:
 			yield(get_tree().create_timer(0.5), "timeout")
 			is_hit = false
-	if !is_dead:
+	if !is_dead and !game_won:
 		var move_dir = 0
 		if Input.is_action_pressed("move_right"):
 			move_dir += 1

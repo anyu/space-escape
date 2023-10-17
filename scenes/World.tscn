@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://scenes/SpaceBase.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scripts/SpaceBase.gd" type="Script" id=21]
 [ext_resource path="res://audio/win.mp3" type="AudioStream" id=22]
+[ext_resource path="res://scenes/WinMenu.gd" type="Script" id=23]
 
 [sub_resource type="GDScript" id=15]
 script/source = "extends StaticBody2D
@@ -312,6 +313,15 @@ volume_db = 1.0
 
 [node name="Theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
+
+[node name="WinMenu" type="Popup" parent="."]
+visible = true
+margin_left = 278.0
+margin_top = 533.0
+margin_right = 318.0
+margin_bottom = 573.0
+rect_scale = Vector2( 4.72019, 4.68 )
+script = ExtResource( 23 )
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="body_entered" from="Springs/Spring" to="Player" method="_on_Spring_body_entered"]

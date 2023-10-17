@@ -6,15 +6,15 @@ export(PackedScene) var laser_scene
 const MIN_UFO_WAIT_SECS = 1.0
 const MAX_UFO_WAIT_SECS = 8.0
 
-onready var camera = get_node("Camera2D")
-onready var space_base = get_node("SpaceBase")
+onready var camera = $Camera2D
+onready var space_base = $SpaceBase
 
 func _ready():
 	new_game()
 
 func new_game():
 	$StartTimer.start()
-	get_node("Theme").play()
+	$Theme.play()
 
 func _on_StartTimer_timeout():
 	$UFOTimer.start()
@@ -30,8 +30,10 @@ func _on_UFOTimer_timeout():
 	$UFOTimer.start()
 
 func win_game():
-	get_node("Theme").stop()
-	get_node("Win").play()
+	$Theme.stop()
+	$Win.play()
+	$Player.game_won = true
+	$WinMenu.show_popup_menu()
 	cleanup()
 	switch_to_menu(5)
 

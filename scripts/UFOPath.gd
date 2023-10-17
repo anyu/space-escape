@@ -1,6 +1,6 @@
 extends Path2D
 
-onready var follow = get_node("UFOPathFollow")
+onready var follow = $UFOPathFollow
 var cameraOffset = Vector2(0, 700)
 
 func _ready():

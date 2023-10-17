@@ -59,7 +59,7 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 margin_right = 727.0
 margin_bottom = 643.0
-rect_scale = Vector2( 0.982428, 1.99411 )
+rect_scale = Vector2( 1.03078, 2.07046 )
 theme = SubResource( 2 )
 color = Color( 0.0941176, 0.105882, 0.113725, 1 )
 
