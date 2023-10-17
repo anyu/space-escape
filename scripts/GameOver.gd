@@ -2,6 +2,7 @@ extends CanvasLayer
 
 func _ready():
 	transition()
+	get_node("Theme").play()
 	
 func transition():
 	$AnimationPlayer.play("fade")

@@ -14,6 +14,7 @@ func _ready():
 
 func new_game():
 	$StartTimer.start()
+	get_node("Theme").play()
 
 func _on_StartTimer_timeout():
 	$UFOTimer.start()
@@ -30,11 +31,17 @@ func _on_UFOTimer_timeout():
 
 func win_game():
 	get_node("Win").play()
-	$UFOTimer.stop()
-	yield(get_tree().create_timer(5), "timeout")
-	get_tree().change_scene("res://scenes/GameOver.tscn")
-	
+	cleanup()
+	switch_to_menu()
+
 func end_game():
+	cleanup()
+	switch_to_menu()
+
+func cleanup():
 	$UFOTimer.stop()
+	$StartTimer.stop()
+	
+func switch_to_menu():
 	yield(get_tree().create_timer(3), "timeout")
 	get_tree().change_scene("res://scenes/GameOver.tscn")
