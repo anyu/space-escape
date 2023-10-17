@@ -96,6 +96,7 @@ pause={
 2d_physics/layer_3="springs"
 2d_physics/layer_4="lasers"
 2d_physics/layer_5="gems"
+2d_physics/layer_6="spacebase"
 
 [physics]
 

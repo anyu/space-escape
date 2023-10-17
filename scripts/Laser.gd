@@ -2,9 +2,6 @@ extends Area2D
 
 export var MOVE_SPEED = 500
 
-#onready var ufo = get_parent()
-#onready var world = ufo.get_parent()
-
 func _ready():
 	$LaserBullet.play()
 	

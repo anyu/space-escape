@@ -7,6 +7,7 @@ const MIN_UFO_WAIT_SECS = 1.0
 const MAX_UFO_WAIT_SECS = 8.0
 
 onready var camera = get_node("Camera2D")
+onready var space_base = get_node("SpaceBase")
 
 func _ready():
 	new_game()
@@ -26,6 +27,12 @@ func _on_UFOTimer_timeout():
 	var random_secs = randf() * (MAX_UFO_WAIT_SECS - MIN_UFO_WAIT_SECS) + MIN_UFO_WAIT_SECS
 	$UFOTimer.wait_time = random_secs
 	$UFOTimer.start()
+
+func win_game():
+	get_node("Win").play()
+	$UFOTimer.stop()
+	yield(get_tree().create_timer(5), "timeout")
+	get_tree().change_scene("res://scenes/GameOver.tscn")
 	
 func end_game():
 	$UFOTimer.stop()

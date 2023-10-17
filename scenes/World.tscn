@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://images/health_bar_progress.png" type="Texture" id=18]
 [ext_resource path="res://images/health_bar_under.png" type="Texture" id=19]
 [ext_resource path="res://scenes/SpaceBase.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scripts/SpaceBase.gd" type="Script" id=21]
+[ext_resource path="res://audio/win2.mp3" type="AudioStream" id=22]
 
 [sub_resource type="GDScript" id=15]
 script/source = "extends StaticBody2D
@@ -199,7 +201,8 @@ position = Vector2( 437, -449 )
 position = Vector2( 384, -992 )
 
 [node name="SpaceBase" parent="." instance=ExtResource( 20 )]
-position = Vector2( 92, -1396 )
+position = Vector2( 639, 106 )
+script = ExtResource( 21 )
 
 [node name="UFOTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -222,6 +225,10 @@ texture = ExtResource( 4 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 17 )]
 
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 22 )
+volume_db = 1.0
+
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="body_entered" from="Springs/Spring" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_exited" from="Springs/Spring" to="Player" method="_on_Spring_body_exited"]
@@ -230,4 +237,5 @@ texture = ExtResource( 4 )
 [connection signal="gem_collected" from="Gems/Gem" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="gem_collected" from="Gems/Gem2" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="gem_collected" from="Gems/Gem3" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
+[connection signal="body_entered" from="SpaceBase" to="SpaceBase" method="_on_SpaceBase_body_entered"]
 [connection signal="timeout" from="UFOTimer" to="." method="_on_UFOTimer_timeout"]
