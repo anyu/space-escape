@@ -104,7 +104,6 @@ autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 350, 1156 )
-collision_mask = 29
 __meta__ = {
 "_edit_group_": true
 }
