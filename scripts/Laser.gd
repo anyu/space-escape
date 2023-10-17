@@ -18,7 +18,4 @@ func _on_Laser_body_entered(body):
 	if body.name == "Player":
 		$Ouch.play()
 		body.lose_health()
-#		var player = world.get_node("Player")
-#		player.play_animation("hit")
-		
-	
+

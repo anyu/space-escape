@@ -17,6 +17,7 @@ onready var hbar = get_node("../StatsUI/HP/HealthBar")
 
 var y_velo = 0
 var facing_right = false
+var is_hit = false
 var is_dead = false
 var gems_collected = 0
 var current_hp = MAX_HP
@@ -45,6 +46,12 @@ func _physics_process(_delta):
 		if !facing_right and move_dir > 0:
 			flip()
 		
+		if is_hit:
+			play_animation("hit")
+			yield(get_tree().create_timer(0.5), "timeout")
+			play_animation("idle")
+			is_hit = false
+			
 		if grounded:
 			if move_dir == 0:
 				play_animation("idle")
@@ -82,10 +89,11 @@ func collect_gem():
 	$CollectGem.play()
 
 func lose_health():
+	is_hit = true
 	current_hp -= DAMAGE_STEP
 	var percentage_hp = int((float(current_hp)/MAX_HP) * 100)
 	hbar.value = percentage_hp
-	if percentage_hp > MAX_HP/4:
+	if percentage_hp > MAX_HP/4.0:
 		hbar.set_tint_progress("74ff54") # green
 	else:
 		hbar.set_tint_progress("ff0049") # red
