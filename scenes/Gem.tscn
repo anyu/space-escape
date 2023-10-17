@@ -16,5 +16,6 @@ polygon = PoolVector2Array( 26, -11, 26, 21, 3, 35, -20, 19, -20, -11, 3, -26 )
 
 [node name="CollectGem" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = 20.0
 
 [connection signal="body_entered" from="." to="." method="_on_Gem_body_entered"]

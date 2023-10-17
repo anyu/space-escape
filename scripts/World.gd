@@ -2,7 +2,7 @@ extends Node2D
 
 export(PackedScene) var ufo_scene
 export(PackedScene) var laser_scene
-#export(PackedScene) var gem_counter_scene
+
 
 onready var camera = get_node("Camera2D")
 

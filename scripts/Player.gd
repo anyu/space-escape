@@ -6,15 +6,20 @@ const GRAVITY = 50
 const MAX_FALL_SPEED = 1500
 const SPRING_FORCE = 2000
 
+const MAX_HP = 100
+const DAMAGE_STEP = 25
+
 onready var screen_size = get_viewport_rect().size
 onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
 onready var camera = get_node("../Camera2D")
+onready var hbar = get_node("../StatsUI/HP/HealthBar")
 
 var y_velo = 0
 var facing_right = false
 var is_dead = false
 var gems_collected = 0
+var current_hp = MAX_HP
 
 func _physics_process(_delta):
 	screen_constrain()
@@ -72,6 +77,10 @@ func _on_Spring_body_exited(body):
 	if body.name == "Player":
 		yield(get_tree().create_timer(1.0), "timeout")
 	$Bounce.stop()
+
+func lose_health():
+	current_hp -= DAMAGE_STEP
+	hbar.value = int((float(current_hp)/MAX_HP) * 100)
 
 func die():
 	is_dead = true
