@@ -8,6 +8,7 @@ const MAX_UFO_WAIT_SECS = 8.0
 
 onready var camera = $Camera2D
 onready var space_base = $SpaceBase
+onready var victory_screen = $VictoryNode/VictoryScreen
 
 func _ready():
 	new_game()
@@ -33,9 +34,10 @@ func win_game():
 	$Theme.stop()
 	$Win.play()
 	$Player.game_won = true
-	$WinMenu.show_popup_menu()
+	victory_screen.show()
 	cleanup()
 	switch_to_menu(5)
+
 
 func end_game():
 	cleanup()
