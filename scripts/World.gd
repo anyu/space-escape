@@ -29,5 +29,5 @@ func _on_UFOTimer_timeout():
 	
 func end_game():
 	$UFOTimer.stop()
-	yield(get_tree().create_timer(2.5), "timeout")
+	yield(get_tree().create_timer(3), "timeout")
 	get_tree().change_scene("res://scenes/GameOver.tscn")
