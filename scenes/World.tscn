@@ -77,6 +77,7 @@ margin_top = 29.0
 margin_right = 680.0
 margin_bottom = 45.0
 rect_scale = Vector2( 2.94348, 2.94348 )
+bbcode_text = "0"
 text = "0"
 script = ExtResource( 16 )
 
@@ -95,7 +96,7 @@ texture_over = ExtResource( 13 )
 texture_progress = ExtResource( 18 )
 tint_under = Color( 0.109804, 0.109804, 0.109804, 1 )
 tint_over = Color( 0, 0, 0, 1 )
-tint_progress = Color( 0.415686, 0.92549, 0.32549, 1 )
+tint_progress = Color( 0.454902, 1, 0.329412, 1 )
 nine_patch_stretch = true
 
 [node name="StartTimer" type="Timer" parent="."]

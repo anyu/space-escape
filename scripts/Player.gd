@@ -83,7 +83,12 @@ func collect_gem():
 
 func lose_health():
 	current_hp -= DAMAGE_STEP
-	hbar.value = int((float(current_hp)/MAX_HP) * 100)
+	var percentage_hp = int((float(current_hp)/MAX_HP) * 100)
+	hbar.value = percentage_hp
+	if percentage_hp > MAX_HP/4:
+		hbar.set_tint_progress("74ff54") # green
+	else:
+		hbar.set_tint_progress("ff0049") # red
 	if hbar.value == 0:
 		die()
 
