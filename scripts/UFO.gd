@@ -21,7 +21,7 @@ func _on_LaserTimer_timeout():
 	laser.global_position = global_position + Vector2(0, ufo_height + 10)
 	var random_secs = randf() * (MAX_LASER_WAIT_SECS - MIN_LASER_WAIT_SECS) + MIN_LASER_WAIT_SECS
 	$LaserTimer.wait_time = random_secs
-	$LaserTimer.start()	
+	$LaserTimer.start()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

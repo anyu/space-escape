@@ -240,6 +240,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Asteroid-lg7" parent="Asteroid-lg" instance=ExtResource( 9 )]
+position = Vector2( 379, -4360 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="Springs" type="Spatial" parent="."]
 
 [node name="Spring" parent="Springs" instance=ExtResource( 3 )]
@@ -285,7 +291,7 @@ position = Vector2( 27, -3362 )
 position = Vector2( 750, -3967 )
 
 [node name="SpaceBase" parent="." instance=ExtResource( 20 )]
-position = Vector2( 639, 106 )
+position = Vector2( 412, -4485 )
 script = ExtResource( 21 )
 
 [node name="UFOTimer" type="Timer" parent="."]

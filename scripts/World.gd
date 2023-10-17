@@ -34,10 +34,14 @@ func win_game():
 	$Theme.stop()
 	$Win.play()
 	$Player.game_won = true
-	victory_screen.show()
+	trigger_victory_conditions()
 	cleanup()
 	switch_to_menu(5)
-
+	
+func trigger_victory_conditions():
+	victory_screen.show()
+	$Player.visible = false
+	$SpaceBase.visible = false
 
 func end_game():
 	cleanup()
