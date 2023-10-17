@@ -16,6 +16,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Laser_body_entered(body):
 	if body.name == "Player":
-		$Ouch.play()
 		body.lose_health()
 

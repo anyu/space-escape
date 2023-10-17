@@ -9,6 +9,9 @@ const SPRING_FORCE = 2000
 const MAX_HP = 100
 const DAMAGE_STEP = 25
 
+const COLOR_PBAR_HIGH = "74ff54"
+const COLOR_PBAR_LOW = "ff0049"
+
 onready var screen_size = get_viewport_rect().size
 onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
@@ -24,11 +27,16 @@ var current_hp = MAX_HP
 
 func _physics_process(_delta):
 	screen_constrain()
+	if is_hit:
+		play_animation("hit")
+		if !is_dead:
+			yield(get_tree().create_timer(0.5), "timeout")
+			is_hit = false
 	if !is_dead:
 		var move_dir = 0
 		if Input.is_action_pressed("move_right"):
 			move_dir += 1
-		if Input.is_action_pressed("move_left"):	
+		if Input.is_action_pressed("move_left"):
 			move_dir -= 1
 		var _m = move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0,-1))
 		
@@ -45,12 +53,6 @@ func _physics_process(_delta):
 			flip()
 		if !facing_right and move_dir > 0:
 			flip()
-		
-		if is_hit:
-			play_animation("hit")
-			yield(get_tree().create_timer(0.5), "timeout")
-			play_animation("idle")
-			is_hit = false
 			
 		if grounded:
 			if move_dir == 0:
@@ -90,13 +92,14 @@ func collect_gem():
 
 func lose_health():
 	is_hit = true
+	$Ouch.play()
 	current_hp -= DAMAGE_STEP
 	var percentage_hp = int((float(current_hp)/MAX_HP) * 100)
 	hbar.value = percentage_hp
 	if percentage_hp > MAX_HP/4.0:
-		hbar.set_tint_progress("74ff54") # green
+		hbar.set_tint_progress(COLOR_PBAR_HIGH)
 	else:
-		hbar.set_tint_progress("ff0049") # red
+		hbar.set_tint_progress(COLOR_PBAR_LOW)
 	if hbar.value == 0:
 		die()
 
@@ -106,16 +109,14 @@ func die():
 		slow_death()
 	else:
 		fall_death()
+	yield(get_tree().create_timer(2.0), "timeout")
+	get_parent().end_game()
 
 func slow_death():
 	$SlowDeath.play()
-	yield(get_tree().create_timer(10.0), "timeout")
-	$SlowDeath.stop()
-	
+
 func fall_death():
 	$Falling.play()
-	yield(get_tree().create_timer(10.0), "timeout")
-	$Falling.stop()
 		
 func _on_VisibilityNotifier2D_screen_exited():
 #	Don't trigger end game if player exits top of screen
@@ -123,4 +124,3 @@ func _on_VisibilityNotifier2D_screen_exited():
 		pass
 	else:
 		die()
-		get_parent().end_game()
