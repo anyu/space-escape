@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://images/button_play_again.png" type="Texture" id=2]
+[ext_resource path="res://images/game_over.png" type="Texture" id=3]
+[ext_resource path="res://images/button_quit.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -30,7 +33,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.0117647, 0, 0, 1 ) ]
+"values": [ Color( 0.0941176, 0.105882, 0.113725, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -57,34 +60,32 @@ margin_right = 727.0
 margin_bottom = 643.0
 rect_scale = Vector2( 0.982428, 1.99411 )
 theme = SubResource( 2 )
-color = Color( 0.0117647, 0, 0, 1 )
+color = Color( 0.0941176, 0.105882, 0.113725, 1 )
 
-[node name="Game Over" type="Label" parent="."]
-margin_left = 241.0
-margin_top = 405.0
-margin_right = 317.0
-margin_bottom = 419.0
-rect_scale = Vector2( 3.28126, 3.28126 )
-text = "Game Over"
-align = 1
-valign = 1
-uppercase = true
+[node name="RestartButton" type="TextureButton" parent="."]
+margin_left = 145.0
+margin_top = 554.0
+margin_right = 368.0
+margin_bottom = 632.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
 
-[node name="RestartButton" type="Button" parent="."]
-margin_left = 272.0
-margin_top = 504.0
-margin_right = 347.0
+[node name="QuitButton" type="TextureButton" parent="."]
+margin_left = 421.0
+margin_top = 563.0
+margin_right = 531.0
+margin_bottom = 626.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+
+[node name="GameOverMenu" type="TextureRect" parent="."]
+margin_left = 118.0
+margin_top = 297.0
+margin_right = 627.0
 margin_bottom = 524.0
-rect_scale = Vector2( 2.23747, 2.23747 )
-text = "Restart"
-
-[node name="QuitButton" type="Button" parent="."]
-margin_left = 270.0
-margin_top = 582.0
-margin_right = 345.0
-margin_bottom = 602.0
-rect_scale = Vector2( 2.23747, 2.20273 )
-text = "Quit"
+rect_scale = Vector2( 1.00303, 1.08695 )
+texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )

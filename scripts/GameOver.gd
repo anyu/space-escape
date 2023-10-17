@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 func _ready():
+#	var t=Texture.new()
+#	t=load("res://image/game_over_menu.png")
+#	t.add_image(t,10,10)
 	transition()
 	
 func transition():
