@@ -81,13 +81,26 @@ func _on_Spring_body_exited(body):
 func lose_health():
 	current_hp -= DAMAGE_STEP
 	hbar.value = int((float(current_hp)/MAX_HP) * 100)
+	if hbar.value == 0:
+		die()
 
 func die():
 	is_dead = true
+	if hbar.value == 0:
+		slow_death()
+	else:
+		fall_death()
+
+func slow_death():
+	$SlowDeath.play()
+	yield(get_tree().create_timer(10.0), "timeout")
+	$SlowDeath.stop()
+	
+func fall_death():
 	$Falling.play()
 	yield(get_tree().create_timer(10.0), "timeout")
 	$Falling.stop()
-	
+		
 func _on_VisibilityNotifier2D_screen_exited():
 #	Don't trigger end game if player exits top of screen
 	if global_position.y - (sprite.texture.get_size().y / 2) < camera.global_position.y:
