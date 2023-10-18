@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://scripts/SpaceBase.gd" type="Script" id=21]
 [ext_resource path="res://audio/win.mp3" type="AudioStream" id=22]
 [ext_resource path="res://scenes/VictoryScreen.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Asteroid_xl.tscn" type="PackedScene" id=24]
 
 [sub_resource type="GDScript" id=15]
 script/source = "extends StaticBody2D
@@ -50,6 +51,10 @@ _data = {
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [ 722.0 ]
+}
 ufo_scene = ExtResource( 11 )
 laser_scene = ExtResource( 14 )
 
@@ -162,6 +167,24 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Asteroid-sm8" parent="Asteroid-sm" instance=ExtResource( 10 )]
+position = Vector2( 425, -4778 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-sm9" parent="Asteroid-sm" instance=ExtResource( 10 )]
+position = Vector2( 544, -4853 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-sm10" parent="Asteroid-sm" instance=ExtResource( 10 )]
+position = Vector2( 678, -4969 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="Asteroid-med" type="Spatial" parent="."]
 
 [node name="Asteroid" parent="Asteroid-med" instance=ExtResource( 6 )]
@@ -203,6 +226,18 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Asteroid-med8" parent="Asteroid-med" instance=ExtResource( 6 )]
+position = Vector2( 324, -5273 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-med7" parent="Asteroid-med" instance=ExtResource( 6 )]
+position = Vector2( 275, -4608 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="Asteroid-lg" type="Spatial" parent="."]
 
 [node name="Asteroid-lg" parent="Asteroid-lg" instance=ExtResource( 9 )]
@@ -236,16 +271,33 @@ __meta__ = {
 }
 
 [node name="Asteroid-lg6" parent="Asteroid-lg" instance=ExtResource( 9 )]
-position = Vector2( 643, -3893 )
+position = Vector2( 569, -3893 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Asteroid-lg7" parent="Asteroid-lg" instance=ExtResource( 9 )]
-position = Vector2( 379, -4248 )
+position = Vector2( 69, -4226 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Asteroid-lg8" parent="Asteroid-lg" instance=ExtResource( 9 )]
+position = Vector2( 118, -5639 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-lg9" parent="Asteroid-lg" instance=ExtResource( 9 )]
+position = Vector2( 591, -5634 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Asteroid-xl" type="Spatial" parent="."]
+
+[node name="Asteroid-xl1" parent="Asteroid-xl" instance=ExtResource( 24 )]
+position = Vector2( 369, -6049 )
 
 [node name="Springs" type="Spatial" parent="."]
 
@@ -263,6 +315,14 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Spring4" parent="Springs" instance=ExtResource( 3 )]
 position = Vector2( 298, -1611 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Spring5" parent="Springs" instance=ExtResource( 3 )]
+position = Vector2( 503, -3966 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Spring6" parent="Springs" instance=ExtResource( 3 )]
+position = Vector2( 545, -4912 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Gems" type="Spatial" parent="."]
@@ -289,10 +349,16 @@ position = Vector2( 390, -2281 )
 position = Vector2( 24, -3183 )
 
 [node name="Gem8" parent="Gems" instance=ExtResource( 15 )]
-position = Vector2( 750, -3967 )
+position = Vector2( 676, -3967 )
+
+[node name="Gem9" parent="Gems" instance=ExtResource( 15 )]
+position = Vector2( 419, -4838 )
+
+[node name="Gem10" parent="Gems" instance=ExtResource( 15 )]
+position = Vector2( 691, -5035 )
 
 [node name="SpaceBase" parent="." instance=ExtResource( 20 )]
-position = Vector2( 376, -4376 )
+position = Vector2( 346, -6165 )
 script = ExtResource( 21 )
 
 [node name="UFOTimer" type="Timer" parent="."]
@@ -336,6 +402,10 @@ visible = false
 [connection signal="body_exited" from="Springs/Spring3" to="Player" method="_on_Spring_body_exited"]
 [connection signal="body_entered" from="Springs/Spring4" to="Player" method="_on_Spring_body_entered"]
 [connection signal="body_exited" from="Springs/Spring4" to="Player" method="_on_Spring_body_exited"]
+[connection signal="body_entered" from="Springs/Spring5" to="Player" method="_on_Spring_body_entered"]
+[connection signal="body_exited" from="Springs/Spring5" to="Player" method="_on_Spring_body_exited"]
+[connection signal="body_entered" from="Springs/Spring6" to="Player" method="_on_Spring_body_entered"]
+[connection signal="body_exited" from="Springs/Spring6" to="Player" method="_on_Spring_body_exited"]
 [connection signal="gem_collected" from="Gems/Gem" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="gem_collected" from="Gems/Gem2" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="gem_collected" from="Gems/Gem3" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
@@ -344,5 +414,7 @@ visible = false
 [connection signal="gem_collected" from="Gems/Gem6" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="gem_collected" from="Gems/Gem7" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="gem_collected" from="Gems/Gem8" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
+[connection signal="gem_collected" from="Gems/Gem9" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
+[connection signal="gem_collected" from="Gems/Gem10" to="StatsUI/GemCounter" method="_on_Gem_gem_collected"]
 [connection signal="body_entered" from="SpaceBase" to="SpaceBase" method="_on_SpaceBase_body_entered"]
 [connection signal="timeout" from="UFOTimer" to="." method="_on_UFOTimer_timeout"]

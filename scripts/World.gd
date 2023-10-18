@@ -53,4 +53,6 @@ func cleanup():
 	
 func switch_to_menu(delay):
 	yield(get_tree().create_timer(delay), "timeout")
-	get_tree().change_scene("res://scenes/GameOver.tscn")
+	var result = get_tree().change_scene("res://scenes/GameOver.tscn")
+	if result != OK:
+		print("Scene change failed with error code: ", result)
