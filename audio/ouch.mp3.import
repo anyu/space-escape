@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ouch.mp3-650678b242ed723c27cac3c9d3b25f50.mp3str"
+
+[deps]
+
+source_file="res://audio/ouch.mp3"
+dest_files=[ "res://.import/ouch.mp3-650678b242ed723c27cac3c9d3b25f50.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/slow-death.mp3-316de0bdd94a5a197c3218ffccc313a3.mp3str"
+
+[deps]
+
+source_file="res://audio/slow-death.mp3"
+dest_files=[ "res://.import/slow-death.mp3-316de0bdd94a5a197c3218ffccc313a3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

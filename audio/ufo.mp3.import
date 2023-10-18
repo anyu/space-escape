@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ufo.mp3-02200dfb893c67732a2f2e80a98dbda4.mp3str"
+
+[deps]
+
+source_file="res://audio/ufo.mp3"
+dest_files=[ "res://.import/ufo.mp3-02200dfb893c67732a2f2e80a98dbda4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
