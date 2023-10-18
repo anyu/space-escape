@@ -110,7 +110,7 @@ func die():
 		slow_death()
 	else:
 		fall_death()
-	yield(get_tree().create_timer(2.0), "timeout")
+	get_parent().get_node("Theme").stop()
 	get_parent().end_game()
 
 func slow_death():
@@ -118,10 +118,11 @@ func slow_death():
 
 func fall_death():
 	$Falling.play()
-		
+
 func _on_VisibilityNotifier2D_screen_exited():
 #	Don't trigger end game if player exits top of screen
-	if global_position.y - (sprite.texture.get_size().y / 2) < camera.global_position.y:
+	var player_exits_screen_top = global_position.y - (sprite.texture.get_size().y / 2) < camera.global_position.y
+	if player_exits_screen_top or game_won:
 		pass
 	else:
 		die()
