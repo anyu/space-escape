@@ -59,7 +59,7 @@ ufo_scene = ExtResource( 11 )
 laser_scene = ExtResource( 14 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -136, 10 )
+position = Vector2( 4, 2 )
 anchor_mode = 0
 current = true
 limit_left = 0
