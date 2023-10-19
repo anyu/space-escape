@@ -6,22 +6,22 @@
 [node name="UI" type="CanvasLayer"]
 
 [node name="GemIconSprite" type="Sprite" parent="."]
-position = Vector2( 604, 46 )
+position = Vector2( 593, 46 )
 texture = ExtResource( 2 )
 
 [node name="x" type="RichTextLabel" parent="."]
-margin_left = 639.0
+margin_left = 628.0
 margin_top = 25.0
-margin_right = 652.0
+margin_right = 641.0
 margin_bottom = 41.0
 rect_scale = Vector2( 2.94348, 2.94348 )
 text = "x"
 
 [node name="GemCounter" type="RichTextLabel" parent="."]
-margin_left = 667.0
-margin_top = 29.0
-margin_right = 680.0
-margin_bottom = 45.0
+margin_left = 659.0
+margin_top = 28.0
+margin_right = 678.0
+margin_bottom = 44.0
 rect_scale = Vector2( 2.94348, 2.94348 )
 text = "0"
 script = ExtResource( 1 )
