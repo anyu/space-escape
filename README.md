@@ -1,6 +1,10 @@
 # Space Escape
 
-Collect gems and avoid UFOs to escape to your space base!
+Collect gems.
+Avoid UFOs.
+Escape to your space base.
+
+Or die trying.
 
 [https://an-yu.itch.io/space-escape](https://an-yu.itch.io/space-escape)
 
